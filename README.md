@@ -1,2 +1,2 @@
-# Piek-uves_darbs
+# Piekluves_darbs
 Piekļuves_darbs
