@@ -81,6 +81,7 @@
             pass_button.MouseState = MaterialSkin.MouseState.OUT;
             pass_button.Multiline = false;
             pass_button.Name = "pass_button";
+            pass_button.Password = true;
             pass_button.Size = new Size(208, 50);
             pass_button.TabIndex = 2;
             pass_button.Text = "";
