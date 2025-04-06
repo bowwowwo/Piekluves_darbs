@@ -55,6 +55,7 @@ namespace piekluves_darbs
         private void login_button_Click(object sender, EventArgs e) // login button
         {
             username = username_button.Text;
+            Global.global_username = username;
             password = pass_button.Text;
 
             try
@@ -70,7 +71,6 @@ namespace piekluves_darbs
                 else
                 {
                     string query = "SELECT COUNT(*) FROM Users WHERE username=@username AND password_hash=@password";
-                    string adminQuery = "SELECT admin FROM Users WHERE username=@username";
 
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
@@ -85,32 +85,16 @@ namespace piekluves_darbs
 
                                 if (count > 0)
                                 {
-                                    using (SQLiteCommand cmd2 = new SQLiteCommand(adminQuery, con))
-                                    {
-                                        cmd2.Parameters.AddWithValue("@username", username);
-
-                                        object result = cmd2.ExecuteScalar();
-                                        bool admin = Convert.ToBoolean(result);
-
-
-                                        if (admin == true)
-                                        {
-                                            adminPage ShowAdmin = new adminPage();
-                                            ShowAdmin.Show();
-
-                                            this.Hide();
-                                            this.Closed += (s, args) => Application.Exit();
-                                        }
-                                        else
-                                        {
                                             mainPage ShowMain = new mainPage();
                                             ShowMain.Show();
 
                                             this.Hide();
                                             this.Closed += (s, args) => Application.Exit();
-                                        }
-                                    }
                                 }
+                            else
+                            {
+                                MessageBox.Show("Nepareiza parole vai lietotājvārds.");
+                            }
                             }
                         }
                     }
@@ -136,4 +120,9 @@ namespace piekluves_darbs
             return "";
         }
     }
+}
+
+public static class Global
+{ // Modifiable
+    public static String global_username = "";
 }

@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\adminpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\adminpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|c:\\users\\psayt\\desktop\\serber2\\piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB9E419-F0BC-41BA-BC6F-1E46343D0A80}|piekluves-darbs\\piekluves-darbs.csproj|solutionrelative:piekluves-darbs\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,43 +39,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Register.cs",
-              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs",
-              "RelativeDocumentMoniker": "piekluves-darbs\\Register.cs",
-              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs",
-              "RelativeToolTip": "piekluves-darbs\\Register.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIsAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T12:58:20.561Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Register.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs",
-              "RelativeDocumentMoniker": "piekluves-darbs\\Register.cs",
-              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs [Design]",
-              "RelativeToolTip": "piekluves-darbs\\Register.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T12:57:56.322Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "adminPage.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\adminPage.cs",
-              "RelativeDocumentMoniker": "piekluves-darbs\\adminPage.cs",
-              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\adminPage.cs [Design]",
-              "RelativeToolTip": "piekluves-darbs\\adminPage.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T12:44:08.073Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "mainPage.cs [Design]",
               "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\mainPage.cs",
               "RelativeDocumentMoniker": "piekluves-darbs\\mainPage.cs",
@@ -96,38 +51,52 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "mainPage.cs",
+              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\mainPage.cs",
+              "RelativeDocumentMoniker": "piekluves-darbs\\mainPage.cs",
+              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\mainPage.cs",
+              "RelativeToolTip": "piekluves-darbs\\mainPage.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAuwGkAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T19:15:36.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Register.cs",
+              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs",
+              "RelativeDocumentMoniker": "piekluves-darbs\\Register.cs",
+              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs",
+              "RelativeToolTip": "piekluves-darbs\\Register.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T12:58:20.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Register.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs",
+              "RelativeDocumentMoniker": "piekluves-darbs\\Register.cs",
+              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Register.cs [Design]",
+              "RelativeToolTip": "piekluves-darbs\\Register.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T12:57:56.322Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Login.cs",
               "RelativeDocumentMoniker": "piekluves-darbs\\Login.cs",
               "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Login.cs",
               "RelativeToolTip": "piekluves-darbs\\Login.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAF0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAswE0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T13:52:56.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Login.cs",
-              "RelativeDocumentMoniker": "piekluves-darbs\\Login.cs",
-              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Login.cs [Design]",
-              "RelativeToolTip": "piekluves-darbs\\Login.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T14:23:27.412Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Login.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Login.Designer.cs",
-              "RelativeDocumentMoniker": "piekluves-darbs\\Login.Designer.cs",
-              "ToolTip": "C:\\Users\\psayt\\Desktop\\serber2\\Piekluves_darbs\\piekluves-darbs\\piekluves-darbs\\Login.Designer.cs",
-              "RelativeToolTip": "piekluves-darbs\\Login.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T14:17:47.386Z"
+              "WhenOpened": "2025-04-06T19:39:32.616Z"
             }
           ]
         }
