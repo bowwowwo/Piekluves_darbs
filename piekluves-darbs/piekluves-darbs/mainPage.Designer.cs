@@ -32,16 +32,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainPage));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             reservation_tab = new TabPage();
+            materialCard3 = new MaterialSkin.Controls.MaterialCard();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            reservation_list = new MaterialSkin.Controls.MaterialListView();
             log_tab = new TabPage();
             user_tab = new TabPage();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            adminstatus_label = new MaterialSkin.Controls.MaterialLabel();
+            logoff_button = new MaterialSkin.Controls.MaterialButton();
+            user_label = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             admin_tab = new TabPage();
+            removeBook_button = new MaterialSkin.Controls.MaterialButton();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            removeBook_label = new MaterialSkin.Controls.MaterialLabel();
+            admin_list = new MaterialSkin.Controls.MaterialListView();
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             autors = new MaterialSkin.Controls.MaterialTextBox();
             nosaukums = new MaterialSkin.Controls.MaterialTextBox();
             imageList1 = new ImageList(components);
-            listView = new MaterialSkin.Controls.MaterialListView();
             materialTabControl1.SuspendLayout();
+            reservation_tab.SuspendLayout();
+            materialCard3.SuspendLayout();
+            user_tab.SuspendLayout();
+            materialCard1.SuspendLayout();
             admin_tab.SuspendLayout();
+            materialCard2.SuspendLayout();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -63,14 +79,60 @@
             // 
             // reservation_tab
             // 
+            reservation_tab.Controls.Add(materialCard3);
+            reservation_tab.Controls.Add(reservation_list);
             reservation_tab.ImageKey = "icons8-book-50.png";
             reservation_tab.Location = new Point(4, 32);
             reservation_tab.Name = "reservation_tab";
             reservation_tab.Padding = new Padding(3);
             reservation_tab.Size = new Size(931, 395);
             reservation_tab.TabIndex = 0;
-            reservation_tab.Text = "Grāmatu rezervācija";
+            reservation_tab.Text = "Rezervācija";
             reservation_tab.UseVisualStyleBackColor = true;
+            // 
+            // materialCard3
+            // 
+            materialCard3.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard3.Controls.Add(materialLabel2);
+            materialCard3.Depth = 0;
+            materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard3.Location = new Point(17, 22);
+            materialCard3.Margin = new Padding(14);
+            materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard3.Name = "materialCard3";
+            materialCard3.Padding = new Padding(14);
+            materialCard3.Size = new Size(335, 100);
+            materialCard3.TabIndex = 1;
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(17, 14);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(303, 19);
+            materialLabel2.TabIndex = 0;
+            materialLabel2.Text = "Uzspiest uz grāmatas, ko vēlaties rezervēt!\r\n";
+            // 
+            // reservation_list
+            // 
+            reservation_list.AutoSizeTable = false;
+            reservation_list.BackColor = Color.FromArgb(255, 255, 255);
+            reservation_list.BorderStyle = BorderStyle.None;
+            reservation_list.Depth = 0;
+            reservation_list.FullRowSelect = true;
+            reservation_list.Location = new Point(369, 22);
+            reservation_list.MinimumSize = new Size(200, 100);
+            reservation_list.MouseLocation = new Point(-1, -1);
+            reservation_list.MouseState = MaterialSkin.MouseState.OUT;
+            reservation_list.Name = "reservation_list";
+            reservation_list.OwnerDraw = true;
+            reservation_list.Size = new Size(481, 277);
+            reservation_list.TabIndex = 0;
+            reservation_list.UseCompatibleStateImageBehavior = false;
+            reservation_list.View = View.Details;
             // 
             // log_tab
             // 
@@ -80,11 +142,13 @@
             log_tab.Padding = new Padding(3);
             log_tab.Size = new Size(931, 395);
             log_tab.TabIndex = 1;
-            log_tab.Text = "Izsniegšana";
+            log_tab.Text = "Žurnāls";
             log_tab.UseVisualStyleBackColor = true;
             // 
             // user_tab
             // 
+            user_tab.Controls.Add(materialCard1);
+            user_tab.Controls.Add(materialLabel1);
             user_tab.ImageKey = "icons8-user-50.png";
             user_tab.Location = new Point(4, 32);
             user_tab.Name = "user_tab";
@@ -93,9 +157,83 @@
             user_tab.Text = "Lietotājs";
             user_tab.UseVisualStyleBackColor = true;
             // 
+            // materialCard1
+            // 
+            materialCard1.Anchor = AnchorStyles.None;
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(adminstatus_label);
+            materialCard1.Controls.Add(logoff_button);
+            materialCard1.Controls.Add(user_label);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(276, 92);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(326, 181);
+            materialCard1.TabIndex = 3;
+            // 
+            // adminstatus_label
+            // 
+            adminstatus_label.AutoSize = true;
+            adminstatus_label.Depth = 0;
+            adminstatus_label.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            adminstatus_label.Location = new Point(17, 47);
+            adminstatus_label.MouseState = MaterialSkin.MouseState.HOVER;
+            adminstatus_label.Name = "adminstatus_label";
+            adminstatus_label.Size = new Size(107, 19);
+            adminstatus_label.TabIndex = 3;
+            adminstatus_label.Text = "materialLabel2";
+            // 
+            // logoff_button
+            // 
+            logoff_button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            logoff_button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            logoff_button.Depth = 0;
+            logoff_button.HighEmphasis = true;
+            logoff_button.Icon = null;
+            logoff_button.Location = new Point(115, 95);
+            logoff_button.Margin = new Padding(4, 6, 4, 6);
+            logoff_button.MouseState = MaterialSkin.MouseState.HOVER;
+            logoff_button.Name = "logoff_button";
+            logoff_button.NoAccentTextColor = Color.Empty;
+            logoff_button.Size = new Size(103, 36);
+            logoff_button.TabIndex = 2;
+            logoff_button.Text = "Izlogoties";
+            logoff_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            logoff_button.UseAccentColor = false;
+            logoff_button.UseVisualStyleBackColor = true;
+            logoff_button.Click += logoff_button_Click;
+            // 
+            // user_label
+            // 
+            user_label.AutoSize = true;
+            user_label.Depth = 0;
+            user_label.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            user_label.Location = new Point(17, 14);
+            user_label.MouseState = MaterialSkin.MouseState.HOVER;
+            user_label.Name = "user_label";
+            user_label.Size = new Size(107, 19);
+            user_label.TabIndex = 1;
+            user_label.Text = "materialLabel2";
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(448, 148);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(1, 0);
+            materialLabel1.TabIndex = 0;
+            // 
             // admin_tab
             // 
-            admin_tab.Controls.Add(listView);
+            admin_tab.Controls.Add(removeBook_button);
+            admin_tab.Controls.Add(materialCard2);
+            admin_tab.Controls.Add(admin_list);
             admin_tab.Controls.Add(materialButton1);
             admin_tab.Controls.Add(autors);
             admin_tab.Controls.Add(nosaukums);
@@ -107,6 +245,71 @@
             admin_tab.UseVisualStyleBackColor = true;
             admin_tab.Visible = false;
             // 
+            // removeBook_button
+            // 
+            removeBook_button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            removeBook_button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            removeBook_button.Depth = 0;
+            removeBook_button.HighEmphasis = true;
+            removeBook_button.Icon = null;
+            removeBook_button.Location = new Point(246, 309);
+            removeBook_button.Margin = new Padding(4, 6, 4, 6);
+            removeBook_button.MouseState = MaterialSkin.MouseState.HOVER;
+            removeBook_button.Name = "removeBook_button";
+            removeBook_button.NoAccentTextColor = Color.Empty;
+            removeBook_button.Size = new Size(156, 36);
+            removeBook_button.TabIndex = 6;
+            removeBook_button.Text = "Noņemt grāmatu";
+            removeBook_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            removeBook_button.UseAccentColor = false;
+            removeBook_button.UseVisualStyleBackColor = true;
+            // 
+            // materialCard2
+            // 
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(removeBook_label);
+            materialCard2.Depth = 0;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(38, 220);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(364, 69);
+            materialCard2.TabIndex = 5;
+            // 
+            // removeBook_label
+            // 
+            removeBook_label.AutoSize = true;
+            removeBook_label.Depth = 0;
+            removeBook_label.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            removeBook_label.Location = new Point(13, 12);
+            removeBook_label.MouseState = MaterialSkin.MouseState.HOVER;
+            removeBook_label.Name = "removeBook_label";
+            removeBook_label.Size = new Size(107, 19);
+            removeBook_label.TabIndex = 0;
+            removeBook_label.Text = "materialLabel2";
+            // 
+            // admin_list
+            // 
+            admin_list.Anchor = AnchorStyles.None;
+            admin_list.AutoSizeTable = true;
+            admin_list.BackColor = Color.FromArgb(255, 255, 255);
+            admin_list.BorderStyle = BorderStyle.None;
+            admin_list.Depth = 0;
+            admin_list.FullRowSelect = true;
+            admin_list.Location = new Point(441, 21);
+            admin_list.MinimumSize = new Size(200, 100);
+            admin_list.MouseLocation = new Point(-1, -1);
+            admin_list.MouseState = MaterialSkin.MouseState.OUT;
+            admin_list.Name = "admin_list";
+            admin_list.OwnerDraw = true;
+            admin_list.Scrollable = false;
+            admin_list.Size = new Size(200, 100);
+            admin_list.TabIndex = 4;
+            admin_list.UseCompatibleStateImageBehavior = false;
+            admin_list.View = View.Details;
+            // 
             // materialButton1
             // 
             materialButton1.Anchor = AnchorStyles.None;
@@ -115,7 +318,7 @@
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(217, 165);
+            materialButton1.Location = new Point(289, 151);
             materialButton1.Margin = new Padding(4, 6, 4, 6);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -137,12 +340,12 @@
             autors.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             autors.Hint = "Autors";
             autors.LeadingIcon = null;
-            autors.Location = new Point(38, 91);
+            autors.Location = new Point(38, 92);
             autors.MaxLength = 50;
             autors.MouseState = MaterialSkin.MouseState.OUT;
             autors.Multiline = false;
             autors.Name = "autors";
-            autors.Size = new Size(292, 50);
+            autors.Size = new Size(364, 50);
             autors.TabIndex = 2;
             autors.Text = "";
             autors.TrailingIcon = null;
@@ -161,7 +364,7 @@
             nosaukums.MouseState = MaterialSkin.MouseState.OUT;
             nosaukums.Multiline = false;
             nosaukums.Name = "nosaukums";
-            nosaukums.Size = new Size(292, 50);
+            nosaukums.Size = new Size(364, 50);
             nosaukums.TabIndex = 1;
             nosaukums.Text = "";
             nosaukums.TrailingIcon = null;
@@ -175,27 +378,6 @@
             imageList1.Images.SetKeyName(1, "icons8-user-50.png");
             imageList1.Images.SetKeyName(2, "icons8-log-50.png");
             // 
-            // listView
-            // 
-            listView.Anchor = AnchorStyles.None;
-            listView.AutoSizeTable = true;
-            listView.BackColor = Color.FromArgb(255, 255, 255);
-            listView.BorderStyle = BorderStyle.None;
-            listView.Depth = 0;
-            listView.FullRowSelect = true;
-            listView.Location = new Point(353, 21);
-            listView.MinimumSize = new Size(200, 100);
-            listView.MouseLocation = new Point(-1, -1);
-            listView.MouseState = MaterialSkin.MouseState.OUT;
-            listView.Name = "listView";
-            listView.OwnerDraw = true;
-            listView.Scrollable = false;
-            listView.Size = new Size(200, 100);
-            listView.TabIndex = 4;
-            listView.UseCompatibleStateImageBehavior = false;
-            listView.UseWaitCursor = true;
-            listView.View = View.Details;
-            // 
             // mainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -206,8 +388,17 @@
             Name = "mainPage";
             Load += mainPage_Load;
             materialTabControl1.ResumeLayout(false);
+            reservation_tab.ResumeLayout(false);
+            materialCard3.ResumeLayout(false);
+            materialCard3.PerformLayout();
+            user_tab.ResumeLayout(false);
+            user_tab.PerformLayout();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
             admin_tab.ResumeLayout(false);
             admin_tab.PerformLayout();
+            materialCard2.ResumeLayout(false);
+            materialCard2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -222,6 +413,17 @@
         private MaterialSkin.Controls.MaterialTextBox nosaukums;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialTextBox autors;
-        private MaterialSkin.Controls.MaterialListView listView;
+        private MaterialSkin.Controls.MaterialListView admin_list;
+        private MaterialSkin.Controls.MaterialButton logoff_button;
+        private MaterialSkin.Controls.MaterialLabel user_label;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialLabel adminstatus_label;
+        private MaterialSkin.Controls.MaterialListView reservation_list;
+        private MaterialSkin.Controls.MaterialButton removeBook_button;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
+        private MaterialSkin.Controls.MaterialLabel removeBook_label;
+        private MaterialSkin.Controls.MaterialCard materialCard3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

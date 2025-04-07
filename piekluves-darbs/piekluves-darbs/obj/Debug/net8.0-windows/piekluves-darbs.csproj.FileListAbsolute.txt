@@ -35,3 +35,5 @@ C:\Users\psayt\Desktop\serber2\Piekluves_darbs\piekluves-darbs\piekluves-darbs\b
 C:\Users\psayt\Desktop\serber2\Piekluves_darbs\piekluves-darbs\piekluves-darbs\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\psayt\Desktop\serber2\Piekluves_darbs\piekluves-darbs\piekluves-darbs\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
 C:\Users\psayt\Desktop\serber2\Piekluves_darbs\piekluves-darbs\piekluves-darbs\obj\Debug\net8.0-windows\piekluves_darbs.mainPage.resources
+C:\Users\psayt\Desktop\serber2\Piekluves_darbs\piekluves-darbs\piekluves-darbs\obj\Debug\net8.0-windows\piekluves_darbs.BookPopUp.resources
+C:\Users\psayt\Desktop\serber2\Piekluves_darbs\piekluves-darbs\piekluves-darbs\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

@@ -24,6 +24,7 @@ namespace piekluves_darbs
         //string username = Global.global_username;
         private TabPage _savedTabPage;
 
+
         private string book = "";
         private string author = "";
 
@@ -36,7 +37,8 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-            string username = string.Empty;
+            removeBook_label.Text = "Izvēlēties grāmatu, kuru izdzēst.";
+
             HideAdminTab();
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
@@ -52,8 +54,15 @@ namespace piekluves_darbs
                     if (isAdmin == true)
                     {
                         ShowAdminTab();
+                        adminstatus_label.Text = "Esat admins";
+                    }
+                    else
+                    {
+                        adminstatus_label.Text = "Neesat admins";
                     }
                 }
+                user_label.Text = $"Ielogojies, kā {Global.global_username}";
+
             }
         }
 
@@ -74,6 +83,7 @@ namespace piekluves_darbs
             return connectionString;
         }
 
+
         private void HideAdminTab() //removes tab
         {
             _savedTabPage = admin_tab; // keep reference
@@ -87,85 +97,217 @@ namespace piekluves_darbs
                 materialTabControl1.TabPages.Add(_savedTabPage);
             }
         }
-        private void AddAdminListView(MaterialListView listView) //a
+
+        private void InitializeAdminListView()
         {
+            // Set the view to show details.
+            admin_list.View = View.Details;     
+            admin_list.FullRowSelect = true;
+            admin_list.GridLines = false;
+            admin_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            admin_list.Scrollable = true;
+
+            // Define columns (adjust width as necessary)
+            admin_list.Columns.Add("ID", 50, HorizontalAlignment.Left);
+            admin_list.Columns.Add("Title", 250, HorizontalAlignment.Left);
+            admin_list.Columns.Add("Reserved", 100, HorizontalAlignment.Left);
+        }
+
+        private void LoadAdminBooks()
+        {
+            // Clear previous items
+            admin_list.Items.Clear();
+
+            // Define your SQL query
             string query = "SELECT ID, title, isReserved FROM Books";
 
-
-            try
+            // Create a connection (update databaseFilePath() with your connection string)
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            using (SQLiteCommand cmd = new SQLiteCommand(query, con))
             {
-                using (SqlConnection con = new SqlConnection(databaseFilePath()))
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    con.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                con.Open();
 
+                // Execute the query and obtain a data reader
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
                     while (reader.Read())
                     {
-                        //item.SubItems.Add(reader["title"].ToString());
-                        //item.SubItems.Add(reader["isReserved"].ToString());
+                        // Create a ListViewItem with the first column value (ID)
+                        ListViewItem item = new ListViewItem(reader["ID"].ToString());
 
+                        // Add remaining columns as sub-items
+                        item.SubItems.Add(reader["title"].ToString());
+                        item.SubItems.Add(reader["isReserved"].ToString());
 
+                        // Add the ListViewItem to the ListView
+                        admin_list.Items.Add(item);
                     }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Atgadījusies kļūda");
-            }
         }
+
 
         private bool AddBook(string book, string author)
         {
             string query = "INSERT INTO Books (title, author) VALUES (@book, @author)";
 
-            using (SqlConnection con = new SqlConnection(databaseFilePath()))
-            using (SqlCommand cmd = new SqlCommand(query, con))
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
-                con.Open();
-
-                cmd.Parameters.AddWithValue("@book", book);
-                cmd.Parameters.AddWithValue("@author", author);
-
-                try
+                using (SQLiteCommand cmd = new SQLiteCommand(query, con))
                 {
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // returns true
-                }
-                catch
-                {
-                    MessageBox.Show("Atgadījusies kļūda!");
-                    return false;
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@book", book);
+                    cmd.Parameters.AddWithValue("@author", author);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0; // returns true
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Atgadījusies kļūda!");
+                        return false;
+                    }
                 }
             }
         }
-           
-        private void fetchBookInfo()
-        {
 
+        private void InitializeReservationListView()
+        {
+            reservation_list.View = View.Details;
+            reservation_list.FullRowSelect = true;
+            reservation_list.GridLines = false;
+            reservation_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            reservation_list.Scrollable = true;
+
+            reservation_list.Columns.Add("ID", 50, HorizontalAlignment.Left);
+            reservation_list.Columns.Add("Nosaukums", 250, HorizontalAlignment.Left);
+            reservation_list.Columns.Add("Autors", 250, HorizontalAlignment.Left);
+            reservation_list.Columns.Add("Rezervēts", 100, HorizontalAlignment.Left);
+        }
+
+        private void LoadMainBooks()
+        {
+            reservation_list.Items.Clear();
+
+            string query = "SELECT ID, title, author, isReserved FROM Books";
+
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+            {
+                con.Open();
+
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["ID"].ToString());
+
+                        item.SubItems.Add(reader["title"].ToString());
+                        item.SubItems.Add(reader["author"].ToString());
+                        item.SubItems.Add(reader["isReserved"].ToString());
+
+
+                        reservation_list.Items.Add(item);
+                    }
+                }
+            }
         }
 
         //--------------------------------------------------------------------------------------------------
 
-        private void mainPage_Load(object sender, EventArgs e)
+        private void mainPage_Load(object sender, EventArgs e) //ielade listview on load
         {
-            
+            InitializeAdminListView();
+            LoadAdminBooks();
+            //--------------------------------
+            InitializeReservationListView();
+            LoadMainBooks();
+            //--------------------------------
+
+            admin_list.SelectedIndexChanged += admin_list_SelectedIndexChanged;
+            reservation_list.SelectedIndexChanged += reservation_list_SelectedIndexChanged;
         }
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e) //pievienot grāmatu admin lapa
         {
             book = nosaukums.Text;
             author = autors.Text;
 
-            bool success = AddBook(book, author);
-
-            if (success)
+            if (String.IsNullOrEmpty(book))
             {
-                MessageBox.Show("Grāmata pievienota");
-                
+                MessageBox.Show("Nav ievadīts nosaukums!");
+            }
+            else if (String.IsNullOrEmpty(author))
+            {
+                MessageBox.Show("Nav ievadīts nosaukums!");
             }
             else
-                MessageBox.Show("Neizdevās pievienot grāmatu.");
+            {
+                bool success = AddBook(book, author);
+
+                if (success)
+                {
+                    MessageBox.Show("Grāmata pievienota");
+
+                }
+                else
+                    MessageBox.Show("Neizdevās pievienot grāmatu.");
+
+                LoadAdminBooks();
+            }
+        }
+
+        private void logoff_button_Click(object sender, EventArgs e) //log off button profile tab
+        {
+
+            Login ShowLogin = new Login();
+            ShowLogin.Show();
+
+            this.Hide();
+            this.Closed += (s, args) => Application.Exit();
+
+        }
+
+        private void admin_list_SelectedIndexChanged(object sender, EventArgs e) // ja uzspiez uz listview admin lapa
+        {
+            if (admin_list.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = admin_list.SelectedItems[0];
+                string id = selectedItem.SubItems[0].Text;
+                string title = selectedItem.SubItems[1].Text;
+
+                removeBook_label.Text = $"Noņemt grāmatu ID: {id}";
+            }
+        }
+
+        private void reservation_list_SelectedIndexChanged(object sender, EventArgs e) //ja uzspiez uz listview rezervacijas lapa
+        {
+            if (reservation_list.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = reservation_list.SelectedItems[0];
+                string id = selectedItem.SubItems[0].Text;
+
+                int number = int.Parse(id);
+                BookID.ID = number;
+
+                if (selectedItem.SubItems[3].Text == "0")
+                {
+                    BookPopUp ShowPopUp = new BookPopUp();
+                    ShowPopUp.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Grāmata ir rezervēta!");
+                }
+            }
         }
     }
+}
+
+public static class BookID
+{ // Modifiable
+    public static int ID;
 }
