@@ -61,7 +61,7 @@ namespace piekluves_darbs
                         adminstatus_label.Text = "Neesat admins";
                     }
                 }
-                user_label.Text = $"Ielogojies, kā {Global.global_username}";
+                user_label.Text = $"Esat ielogojies, kā {Global.global_username}";
 
             }
         }
@@ -101,7 +101,7 @@ namespace piekluves_darbs
         private void InitializeAdminListView()
         {
             // Set the view to show details.
-            admin_list.View = View.Details;     
+            admin_list.View = View.Details;
             admin_list.FullRowSelect = true;
             admin_list.GridLines = false;
             admin_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -115,31 +115,24 @@ namespace piekluves_darbs
 
         private void LoadAdminBooks()
         {
-            // Clear previous items
             admin_list.Items.Clear();
 
-            // Define your SQL query
             string query = "SELECT ID, title, isReserved FROM Books";
 
-            // Create a connection (update databaseFilePath() with your connection string)
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             using (SQLiteCommand cmd = new SQLiteCommand(query, con))
             {
                 con.Open();
 
-                // Execute the query and obtain a data reader
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        // Create a ListViewItem with the first column value (ID)
                         ListViewItem item = new ListViewItem(reader["ID"].ToString());
 
-                        // Add remaining columns as sub-items
                         item.SubItems.Add(reader["title"].ToString());
                         item.SubItems.Add(reader["isReserved"].ToString());
 
-                        // Add the ListViewItem to the ListView
                         admin_list.Items.Add(item);
                     }
                 }
@@ -174,7 +167,7 @@ namespace piekluves_darbs
             }
         }
 
-        private void InitializeReservationListView()
+        public void InitializeReservationListView()
         {
             reservation_list.View = View.Details;
             reservation_list.FullRowSelect = true;
@@ -188,7 +181,7 @@ namespace piekluves_darbs
             reservation_list.Columns.Add("Rezervēts", 100, HorizontalAlignment.Left);
         }
 
-        private void LoadMainBooks()
+        public void LoadMainBooks()
         {
             reservation_list.Items.Clear();
 
@@ -216,15 +209,63 @@ namespace piekluves_darbs
             }
         }
 
+        public void InitializeLogListView()
+        {
+            log_list.View = View.Details;
+            log_list.FullRowSelect = true;
+            log_list.GridLines = false;
+            log_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            log_list.Scrollable = true;
+
+            log_list.Columns.Add("I_ID", 55, HorizontalAlignment.Left);
+            log_list.Columns.Add("Lietotājs", 140, HorizontalAlignment.Left);
+            log_list.Columns.Add("Grāmata", 250, HorizontalAlignment.Left);
+            log_list.Columns.Add("No", 90, HorizontalAlignment.Left);
+            log_list.Columns.Add("Līdz", 90, HorizontalAlignment.Left);
+        }
+
+        public void LoadLog()
+        {
+            log_list.Items.Clear();
+
+            string query = "SELECT ID, user_username, book_ID, reserved_at, reserved_until FROM Reservations";
+
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+            {
+                con.Open();
+
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["ID"].ToString());
+
+                        item.SubItems.Add(reader["user_username"].ToString());
+                        item.SubItems.Add(reader["book_ID"].ToString());
+                        item.SubItems.Add(reader["reserved_at"].ToString());
+                        item.SubItems.Add(reader["reserved_until"].ToString());
+
+
+                        log_list.Items.Add(item);
+                    }
+                }
+            }
+        }
+
         //--------------------------------------------------------------------------------------------------
 
         private void mainPage_Load(object sender, EventArgs e) //ielade listview on load
         {
+            //--------------------------------
             InitializeAdminListView();
             LoadAdminBooks();
             //--------------------------------
             InitializeReservationListView();
             LoadMainBooks();
+            //--------------------------------
+            InitializeLogListView();
+            LoadLog();
             //--------------------------------
 
             admin_list.SelectedIndexChanged += admin_list_SelectedIndexChanged;
@@ -257,11 +298,14 @@ namespace piekluves_darbs
                     MessageBox.Show("Neizdevās pievienot grāmatu.");
 
                 LoadAdminBooks();
+                LoadMainBooks();
             }
         }
 
         private void logoff_button_Click(object sender, EventArgs e) //log off button profile tab
         {
+
+            Global.global_username = "";
 
             Login ShowLogin = new Login();
             ShowLogin.Show();
@@ -277,7 +321,9 @@ namespace piekluves_darbs
             {
                 ListViewItem selectedItem = admin_list.SelectedItems[0];
                 string id = selectedItem.SubItems[0].Text;
-                string title = selectedItem.SubItems[1].Text;
+                //string title = selectedItem.SubItems[1].Text;
+
+                BookID.deleteID = int.Parse(id);
 
                 removeBook_label.Text = $"Noņemt grāmatu ID: {id}";
             }
@@ -304,10 +350,44 @@ namespace piekluves_darbs
                 }
             }
         }
+
+        private void removeBook_button_Click(object sender, EventArgs e)
+        {
+            string query = "DELETE FROM Books WHERE ID=@id";
+
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                {
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@AtslegasID", BookID.deleteID);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+
+            MessageBox.Show("Grāmata tika noņemta no datubāzes!");
+
+            LoadAdminBooks();
+            LoadMainBooks();
+
+        }
+
+        private void return_book_button_Click(object sender, EventArgs e) //
+        {
+            mainPage myMainPage = new mainPage(); //creates an instance so functions from this form can be called
+            ReturnForm ShowReturnForm = new ReturnForm(myMainPage);
+            ShowReturnForm.Show();
+
+            this.Hide();
+            this.Closed += (s, args) => Application.Exit();
+        }
     }
 }
 
 public static class BookID
 { // Modifiable
     public static int ID;
+    public static int deleteID;
 }

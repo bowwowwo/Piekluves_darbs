@@ -32,10 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainPage));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             reservation_tab = new TabPage();
+            return_book_button = new MaterialSkin.Controls.MaterialButton();
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             reservation_list = new MaterialSkin.Controls.MaterialListView();
             log_tab = new TabPage();
+            return_book_button2 = new MaterialSkin.Controls.MaterialButton();
+            log_list = new MaterialSkin.Controls.MaterialListView();
+            materialCard4 = new MaterialSkin.Controls.MaterialCard();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             user_tab = new TabPage();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             adminstatus_label = new MaterialSkin.Controls.MaterialLabel();
@@ -54,6 +59,8 @@
             materialTabControl1.SuspendLayout();
             reservation_tab.SuspendLayout();
             materialCard3.SuspendLayout();
+            log_tab.SuspendLayout();
+            materialCard4.SuspendLayout();
             user_tab.SuspendLayout();
             materialCard1.SuspendLayout();
             admin_tab.SuspendLayout();
@@ -79,6 +86,7 @@
             // 
             // reservation_tab
             // 
+            reservation_tab.Controls.Add(return_book_button);
             reservation_tab.Controls.Add(materialCard3);
             reservation_tab.Controls.Add(reservation_list);
             reservation_tab.ImageKey = "icons8-book-50.png";
@@ -89,6 +97,26 @@
             reservation_tab.TabIndex = 0;
             reservation_tab.Text = "Rezervācija";
             reservation_tab.UseVisualStyleBackColor = true;
+            // 
+            // return_book_button
+            // 
+            return_book_button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            return_book_button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            return_book_button.Depth = 0;
+            return_book_button.HighEmphasis = true;
+            return_book_button.Icon = null;
+            return_book_button.Location = new Point(140, 142);
+            return_book_button.Margin = new Padding(4, 6, 4, 6);
+            return_book_button.MouseState = MaterialSkin.MouseState.HOVER;
+            return_book_button.Name = "return_book_button";
+            return_book_button.NoAccentTextColor = Color.Empty;
+            return_book_button.Size = new Size(212, 36);
+            return_book_button.TabIndex = 2;
+            return_book_button.Text = "Vēlaties atdot grāmatu";
+            return_book_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            return_book_button.UseAccentColor = false;
+            return_book_button.UseVisualStyleBackColor = true;
+            return_book_button.Click += return_book_button_Click;
             // 
             // materialCard3
             // 
@@ -136,6 +164,9 @@
             // 
             // log_tab
             // 
+            log_tab.Controls.Add(return_book_button2);
+            log_tab.Controls.Add(log_list);
+            log_tab.Controls.Add(materialCard4);
             log_tab.ImageKey = "icons8-log-50.png";
             log_tab.Location = new Point(4, 32);
             log_tab.Name = "log_tab";
@@ -144,6 +175,69 @@
             log_tab.TabIndex = 1;
             log_tab.Text = "Žurnāls";
             log_tab.UseVisualStyleBackColor = true;
+            // 
+            // return_book_button2
+            // 
+            return_book_button2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            return_book_button2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            return_book_button2.Depth = 0;
+            return_book_button2.HighEmphasis = true;
+            return_book_button2.Icon = null;
+            return_book_button2.Location = new Point(17, 111);
+            return_book_button2.Margin = new Padding(4, 6, 4, 6);
+            return_book_button2.MouseState = MaterialSkin.MouseState.HOVER;
+            return_book_button2.Name = "return_book_button2";
+            return_book_button2.NoAccentTextColor = Color.Empty;
+            return_book_button2.Size = new Size(212, 36);
+            return_book_button2.TabIndex = 3;
+            return_book_button2.Text = "Vēlaties atdot grāmatu";
+            return_book_button2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            return_book_button2.UseAccentColor = false;
+            return_book_button2.UseVisualStyleBackColor = true;
+            // 
+            // log_list
+            // 
+            log_list.AutoSizeTable = false;
+            log_list.BackColor = Color.FromArgb(255, 255, 255);
+            log_list.BorderStyle = BorderStyle.None;
+            log_list.Depth = 0;
+            log_list.FullRowSelect = true;
+            log_list.Location = new Point(246, 14);
+            log_list.MinimumSize = new Size(200, 100);
+            log_list.MouseLocation = new Point(-1, -1);
+            log_list.MouseState = MaterialSkin.MouseState.OUT;
+            log_list.Name = "log_list";
+            log_list.OwnerDraw = true;
+            log_list.Size = new Size(632, 309);
+            log_list.TabIndex = 2;
+            log_list.UseCompatibleStateImageBehavior = false;
+            log_list.View = View.Details;
+            // 
+            // materialCard4
+            // 
+            materialCard4.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard4.Controls.Add(materialLabel3);
+            materialCard4.Depth = 0;
+            materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard4.Location = new Point(17, 14);
+            materialCard4.Margin = new Padding(14);
+            materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard4.Name = "materialCard4";
+            materialCard4.Padding = new Padding(14);
+            materialCard4.Size = new Size(212, 77);
+            materialCard4.TabIndex = 1;
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(10, 14);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(149, 19);
+            materialLabel3.TabIndex = 0;
+            materialLabel3.Text = "Izsniegtās grāmatas.";
             // 
             // user_tab
             // 
@@ -263,6 +357,7 @@
             removeBook_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             removeBook_button.UseAccentColor = false;
             removeBook_button.UseVisualStyleBackColor = true;
+            removeBook_button.Click += removeBook_button_Click;
             // 
             // materialCard2
             // 
@@ -389,8 +484,13 @@
             Load += mainPage_Load;
             materialTabControl1.ResumeLayout(false);
             reservation_tab.ResumeLayout(false);
+            reservation_tab.PerformLayout();
             materialCard3.ResumeLayout(false);
             materialCard3.PerformLayout();
+            log_tab.ResumeLayout(false);
+            log_tab.PerformLayout();
+            materialCard4.ResumeLayout(false);
+            materialCard4.PerformLayout();
             user_tab.ResumeLayout(false);
             user_tab.PerformLayout();
             materialCard1.ResumeLayout(false);
@@ -425,5 +525,10 @@
         private MaterialSkin.Controls.MaterialLabel removeBook_label;
         private MaterialSkin.Controls.MaterialCard materialCard3;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialCard materialCard4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialListView log_list;
+        private MaterialSkin.Controls.MaterialButton return_book_button;
+        private MaterialSkin.Controls.MaterialButton return_book_button2;
     }
 }

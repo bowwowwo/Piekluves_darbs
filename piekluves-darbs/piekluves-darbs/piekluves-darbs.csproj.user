@@ -4,6 +4,9 @@
     <Compile Update="BookPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ReturnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="mainPage.cs">
       <SubType>Form</SubType>
     </Compile>
