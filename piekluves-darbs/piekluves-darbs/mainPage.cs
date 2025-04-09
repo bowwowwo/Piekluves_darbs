@@ -213,15 +213,15 @@ namespace piekluves_darbs
         {
             log_list.View = View.Details;
             log_list.FullRowSelect = true;
-            log_list.GridLines = false;
+            log_list.GridLines = true;
             log_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             log_list.Scrollable = true;
 
             log_list.Columns.Add("I_ID", 55, HorizontalAlignment.Left);
             log_list.Columns.Add("Lietotājs", 140, HorizontalAlignment.Left);
-            log_list.Columns.Add("Grāmata", 250, HorizontalAlignment.Left);
-            log_list.Columns.Add("No", 90, HorizontalAlignment.Left);
-            log_list.Columns.Add("Līdz", 90, HorizontalAlignment.Left);
+            log_list.Columns.Add("Grāmata", 180, HorizontalAlignment.Left);
+            log_list.Columns.Add("No", 110, HorizontalAlignment.Left);
+            log_list.Columns.Add("Līdz", 110, HorizontalAlignment.Left);
         }
 
         public void LoadLog()
@@ -341,12 +341,13 @@ namespace piekluves_darbs
 
                 if (selectedItem.SubItems[3].Text == "0")
                 {
-                    BookPopUp ShowPopUp = new BookPopUp();
+                    mainPage myMainPage = new mainPage();
+                    BookPopUp ShowPopUp = new BookPopUp(myMainPage);
                     ShowPopUp.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Grāmata ir rezervēta!");
+                    MessageBox.Show("Grāmata jau ir rezervēta!");
                 }
             }
         }
@@ -380,8 +381,6 @@ namespace piekluves_darbs
             ReturnForm ShowReturnForm = new ReturnForm(myMainPage);
             ShowReturnForm.Show();
 
-            this.Hide();
-            this.Closed += (s, args) => Application.Exit();
         }
     }
 }

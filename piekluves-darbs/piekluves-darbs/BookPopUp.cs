@@ -19,7 +19,10 @@ namespace piekluves_darbs
 {
     public partial class BookPopUp : MaterialForm
     {
-        public BookPopUp()
+
+        private mainPage _mainPageInstance;
+
+        public BookPopUp(mainPage mainPageInstance)
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -27,6 +30,7 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
+            _mainPageInstance = mainPageInstance;
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
@@ -69,6 +73,17 @@ namespace piekluves_darbs
             string connectionString = @"data source =" + dbFilePath;
 
             return connectionString;
+        }
+
+        //----------------------------------------------------------------------------------------------------
+
+        private void LoadAllLists()
+        {
+            _mainPageInstance.InitializeReservationListView();
+            _mainPageInstance.LoadMainBooks();
+            //--------------------------------
+            _mainPageInstance.InitializeLogListView();
+            _mainPageInstance.LoadLog();
         }
 
         //-----------------------------------------------------------------------------------------------------
@@ -125,7 +140,7 @@ namespace piekluves_darbs
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
                         con.Open();
-                        string updateQuery = "UPDATE Books SET description = @description WHERE id = @id";
+                        string updateQuery = "UPDATE Books SET description = @description WHERE id=@id";
 
                         using (SQLiteCommand cmd = new SQLiteCommand(updateQuery, con))
                         {
@@ -170,8 +185,8 @@ namespace piekluves_darbs
 
                             cmd.Parameters.AddWithValue("@user", Global.global_username);
                             cmd.Parameters.AddWithValue("@book", BookID.ID);
-                            cmd.Parameters.AddWithValue("@at", current_time.ToString());
-                            cmd.Parameters.AddWithValue("@due", due_date.ToString());
+                            cmd.Parameters.AddWithValue("@at", current_time.ToString("dd/MM/yyyy"));
+                            cmd.Parameters.AddWithValue("@due", due_date.ToString("dd/MM/yyyy"));
 
                             cmd.ExecuteNonQuery();
 
@@ -194,6 +209,8 @@ namespace piekluves_darbs
                     }
 
                     MessageBox.Show("Grāmata izsniegta :)");
+
+                    LoadAllLists();
 
                     this.Close();
                 }

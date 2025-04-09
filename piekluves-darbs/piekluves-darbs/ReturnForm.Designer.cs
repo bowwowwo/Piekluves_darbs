@@ -74,7 +74,7 @@
             return_book_button.Depth = 0;
             return_book_button.HighEmphasis = true;
             return_book_button.Icon = null;
-            return_book_button.Location = new Point(145, 204);
+            return_book_button.Location = new Point(142, 203);
             return_book_button.Margin = new Padding(4, 6, 4, 6);
             return_book_button.MouseState = MaterialSkin.MouseState.HOVER;
             return_book_button.Name = "return_book_button";

@@ -208,7 +208,7 @@
             log_list.MouseState = MaterialSkin.MouseState.OUT;
             log_list.Name = "log_list";
             log_list.OwnerDraw = true;
-            log_list.Size = new Size(632, 309);
+            log_list.Size = new Size(632, 338);
             log_list.TabIndex = 2;
             log_list.UseCompatibleStateImageBehavior = false;
             log_list.View = View.Details;

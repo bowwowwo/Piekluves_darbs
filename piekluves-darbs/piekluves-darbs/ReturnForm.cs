@@ -29,7 +29,7 @@ namespace piekluves_darbs
             _mainPageInstance = mainPageInstance;
 
             string query = "SELECT book_ID FROM Reservations WHERE user_username=@username";
-            string query2 = "SELECT title FROM Books WHERE ID=@id";
+            string query2 = "SELECT title FROM Books WHERE isReserved=1 AND ID=@id"; // FIX THIS
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
@@ -47,6 +47,8 @@ namespace piekluves_darbs
                         {
                             // Read the bookID from the first table
                             bookID = Convert.ToInt32(reader["book_ID"]);
+                            I_ID.ID = bookID;
+                            
                         }
                     }
                     if (bookID > 0)
@@ -101,7 +103,31 @@ namespace piekluves_darbs
 
         private void return_book_button_Click(object sender, EventArgs e)
         {
+            string query = "UPDATE Books SET isReserved = 0 WHERE id = @id";
+
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            {
+                con.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", I_ID.ID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            string query2 = "";
+
+            MessageBox.Show("Grāmata nodota :)");
+            //---------------------------------------
+            LoadAllLists();
+            //---------------------------------------
+            this.Hide();
 
         }
     }
+}
+
+public static class I_ID
+{ // Modifiable
+    public static int ID;
 }
