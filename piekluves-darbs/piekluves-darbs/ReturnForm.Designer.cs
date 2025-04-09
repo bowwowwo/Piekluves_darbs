@@ -85,6 +85,7 @@
             return_book_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             return_book_button.UseAccentColor = false;
             return_book_button.UseVisualStyleBackColor = true;
+            return_book_button.Click += return_book_button_Click;
             // 
             // ReturnForm
             // 

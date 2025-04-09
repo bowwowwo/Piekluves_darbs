@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("piekluves-darbs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8756a11a69e44cc30dc6c32218760bb2b7c4f8fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58b4c83ad90596d8b181269663844a6f1f0ca43f")]
 [assembly: System.Reflection.AssemblyProductAttribute("piekluves-darbs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("piekluves-darbs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

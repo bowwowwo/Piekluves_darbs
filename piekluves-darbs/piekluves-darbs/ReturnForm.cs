@@ -33,28 +33,35 @@ namespace piekluves_darbs
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
+                con.Open();
+
+                //get the bookID
                 using (SQLiteCommand cmd = new SQLiteCommand(query, con))
                 {
-                    con.Open();
-
                     cmd.Parameters.AddWithValue("@username", Global.global_username);
 
+                    int bookID = -1;
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
-                            int bookID = Convert.ToInt32(reader["book_ID"]);
+                            // Read the bookID from the first table
+                            bookID = Convert.ToInt32(reader["book_ID"]);
+                        }
+                    }
+                    if (bookID > 0)
+                    {
+                        //get more info from another table
+                        using (SQLiteCommand cmd2 = new SQLiteCommand(query2, con))
+                        {
+                            cmd2.Parameters.AddWithValue("@id", bookID);
 
-                            using (SQLiteCommand cmd2 = new SQLiteCommand(query2, con))
+                            using (SQLiteDataReader reader2 = cmd2.ExecuteReader())
                             {
-                                using (SQLiteDataReader reader2 = cmd2.ExecuteReader()) //! ERROR
+                                while (reader2.Read())
                                 {
-                                    while (reader2.Read())
-                                    {
-                                        string bookTitle = reader2["title"].ToString();
-
-                                        book_combobox.Items.Add(bookTitle);
-                                    }
+                                    string bookTitle = reader2["title"].ToString();
+                                    book_combobox.Items.Add(bookTitle);
                                 }
                             }
                         }
@@ -90,6 +97,11 @@ namespace piekluves_darbs
             //--------------------------------
             _mainPageInstance.InitializeLogListView();
             _mainPageInstance.LoadLog();
+        }
+
+        private void return_book_button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
