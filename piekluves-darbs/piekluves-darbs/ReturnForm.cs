@@ -96,6 +96,8 @@ namespace piekluves_darbs
             _mainPageInstance.LoadMainBooks();
             //--------------------------------
             _mainPageInstance.LoadLog();
+            //--------------------------------
+            _mainPageInstance.LoadAdminBooks();
         }
 
         private void return_book_button_Click(object sender, EventArgs e)

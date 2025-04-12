@@ -82,6 +82,8 @@ namespace piekluves_darbs
             _mainPageInstance.LoadMainBooks();
             //--------------------------------
             _mainPageInstance.LoadLog();
+            //--------------------------------
+            _mainPageInstance.LoadAdminBooks();
         }
 
         //-----------------------------------------------------------------------------------------------------

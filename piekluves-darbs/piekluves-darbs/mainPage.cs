@@ -115,7 +115,7 @@ namespace piekluves_darbs
             admin_list.Columns.Add("Reserved", 100, HorizontalAlignment.Left);
         }
 
-        private void LoadAdminBooks()
+        public void LoadAdminBooks()
         {
             admin_list.Items.Clear();
 
