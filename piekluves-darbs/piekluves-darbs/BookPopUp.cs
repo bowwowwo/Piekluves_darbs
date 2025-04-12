@@ -79,10 +79,8 @@ namespace piekluves_darbs
 
         private void LoadAllLists()
         {
-            _mainPageInstance.InitializeReservationListView();
             _mainPageInstance.LoadMainBooks();
             //--------------------------------
-            _mainPageInstance.InitializeLogListView();
             _mainPageInstance.LoadLog();
         }
 

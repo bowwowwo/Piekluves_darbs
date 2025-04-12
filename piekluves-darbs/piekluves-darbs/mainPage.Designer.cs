@@ -55,7 +55,6 @@
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             autors = new MaterialSkin.Controls.MaterialTextBox();
             nosaukums = new MaterialSkin.Controls.MaterialTextBox();
-            imageList1 = new ImageList(components);
             materialTabControl1.SuspendLayout();
             reservation_tab.SuspendLayout();
             materialCard3.SuspendLayout();
@@ -75,7 +74,6 @@
             materialTabControl1.Controls.Add(user_tab);
             materialTabControl1.Controls.Add(admin_tab);
             materialTabControl1.Depth = 0;
-            materialTabControl1.ImageList = imageList1;
             materialTabControl1.Location = new Point(-2, 67);
             materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabControl1.Multiline = true;
@@ -89,7 +87,7 @@
             reservation_tab.Controls.Add(return_book_button);
             reservation_tab.Controls.Add(materialCard3);
             reservation_tab.Controls.Add(reservation_list);
-            reservation_tab.ImageKey = "icons8-book-50.png";
+            reservation_tab.ImageKey = "(none)";
             reservation_tab.Location = new Point(4, 32);
             reservation_tab.Name = "reservation_tab";
             reservation_tab.Padding = new Padding(3);
@@ -167,7 +165,7 @@
             log_tab.Controls.Add(return_book_button2);
             log_tab.Controls.Add(log_list);
             log_tab.Controls.Add(materialCard4);
-            log_tab.ImageKey = "icons8-log-50.png";
+            log_tab.ImageKey = "(none)";
             log_tab.Location = new Point(4, 32);
             log_tab.Name = "log_tab";
             log_tab.Padding = new Padding(3);
@@ -243,7 +241,7 @@
             // 
             user_tab.Controls.Add(materialCard1);
             user_tab.Controls.Add(materialLabel1);
-            user_tab.ImageKey = "icons8-user-50.png";
+            user_tab.ImageKey = "(none)";
             user_tab.Location = new Point(4, 32);
             user_tab.Name = "user_tab";
             user_tab.Size = new Size(931, 395);
@@ -331,7 +329,7 @@
             admin_tab.Controls.Add(materialButton1);
             admin_tab.Controls.Add(autors);
             admin_tab.Controls.Add(nosaukums);
-            admin_tab.ImageKey = "icons8-user-50.png";
+            admin_tab.ImageKey = "(none)";
             admin_tab.Location = new Point(4, 32);
             admin_tab.Name = "admin_tab";
             admin_tab.Size = new Size(931, 395);
@@ -465,15 +463,6 @@
             nosaukums.Text = "";
             nosaukums.TrailingIcon = null;
             // 
-            // imageList1
-            // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
-            imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "icons8-book-50.png");
-            imageList1.Images.SetKeyName(1, "icons8-log-50.png");
-            imageList1.Images.SetKeyName(2, "icons8-user-50.png");
-            // 
             // mainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -508,7 +497,6 @@
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
         private TabPage reservation_tab;
         private TabPage log_tab;
-        private ImageList imageList1;
         private TabPage user_tab;
         private TabPage admin_tab;
         private MaterialSkin.Controls.MaterialTextBox nosaukums;
