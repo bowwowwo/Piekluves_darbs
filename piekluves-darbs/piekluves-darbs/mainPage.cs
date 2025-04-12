@@ -220,15 +220,15 @@ namespace piekluves_darbs
             log_list.Columns.Add("I_ID", 55, HorizontalAlignment.Left);
             log_list.Columns.Add("Lietotājs", 140, HorizontalAlignment.Left);
             log_list.Columns.Add("Grāmata", 180, HorizontalAlignment.Left);
-            log_list.Columns.Add("No", 110, HorizontalAlignment.Left);
-            log_list.Columns.Add("Līdz", 110, HorizontalAlignment.Left);
+            log_list.Columns.Add("Rezervēta", 110, HorizontalAlignment.Left);
+            log_list.Columns.Add("Atdota", 110, HorizontalAlignment.Left);
         }
 
         public void LoadLog()
         {
             log_list.Items.Clear();
 
-            string query = "SELECT ID, user_username, book_ID, reserved_at, reserved_until FROM Reservations";
+            string query = "SELECT ID, user_username, book_ID, reserved_at, returned_at FROM Returns";
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             using (SQLiteCommand cmd = new SQLiteCommand(query, con))
@@ -244,7 +244,7 @@ namespace piekluves_darbs
                         item.SubItems.Add(reader["user_username"].ToString());
                         item.SubItems.Add(reader["book_ID"].ToString());
                         item.SubItems.Add(reader["reserved_at"].ToString());
-                        item.SubItems.Add(reader["reserved_until"].ToString());
+                        item.SubItems.Add(reader["returned_at"].ToString());
 
 
                         log_list.Items.Add(item);

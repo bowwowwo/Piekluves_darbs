@@ -35,6 +35,7 @@
             // 
             // book_combobox
             // 
+            book_combobox.Anchor = AnchorStyles.None;
             book_combobox.AutoResize = false;
             book_combobox.BackColor = Color.FromArgb(255, 255, 255);
             book_combobox.Depth = 0;
@@ -57,6 +58,7 @@
             // 
             // materialLabel1
             // 
+            materialLabel1.Anchor = AnchorStyles.None;
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -69,6 +71,7 @@
             // 
             // return_book_button
             // 
+            return_book_button.Anchor = AnchorStyles.None;
             return_book_button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             return_book_button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             return_book_button.Depth = 0;

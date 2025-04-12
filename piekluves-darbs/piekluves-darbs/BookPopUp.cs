@@ -175,7 +175,7 @@ namespace piekluves_darbs
             {
                 if(agreement_check.Checked == true)
                 {
-                    string query = "INSERT INTO Reservations (user_username, book_ID, reserved_at, reserved_until) VALUES (@user, @book, @at, @due)";
+                    string query = "INSERT INTO Returns (user_username, book_ID, reserved_at) VALUES (@user, @book, @at)";
 
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
@@ -185,8 +185,7 @@ namespace piekluves_darbs
 
                             cmd.Parameters.AddWithValue("@user", Global.global_username);
                             cmd.Parameters.AddWithValue("@book", BookID.ID);
-                            cmd.Parameters.AddWithValue("@at", current_time.ToString("dd/MM/yyyy"));
-                            cmd.Parameters.AddWithValue("@due", due_date.ToString("dd/MM/yyyy"));
+                            cmd.Parameters.AddWithValue("@at", current_time);
 
                             cmd.ExecuteNonQuery();
 
@@ -202,6 +201,22 @@ namespace piekluves_darbs
                             con.Open();
 
                             cmd.Parameters.AddWithValue("@id", BookID.ID);
+
+                            cmd.ExecuteNonQuery();
+
+                        }
+                    }
+
+                    string query3 = "INSERT INTO Reservations (user_username, book_ID) VALUES (@user, @book)";
+
+                    using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+                    {
+                        using (SQLiteCommand cmd = new SQLiteCommand(query3, con))
+                        {
+                            con.Open();
+
+                            cmd.Parameters.AddWithValue("@user", Global.global_username);
+                            cmd.Parameters.AddWithValue("@book", BookID.ID);
 
                             cmd.ExecuteNonQuery();
 
