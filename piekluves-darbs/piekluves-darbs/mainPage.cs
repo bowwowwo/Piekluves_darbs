@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -70,6 +71,7 @@ namespace piekluves_darbs
         {
             e.Cancel = false;
             base.OnFormClosing(e);
+            Process.GetCurrentProcess().Kill();
         }
 
         string databaseFilePath() //connect sqlite database to string
@@ -307,8 +309,12 @@ namespace piekluves_darbs
 
             Global.global_username = "";
 
-            Login ShowLogin = new Login();
-            ShowLogin.Show();
+
+            Login LoginInstance = Application.OpenForms
+                             .OfType<Login>()
+                             .FirstOrDefault();
+
+            LoginInstance.Show();
 
             this.Hide();
             this.Closed += (s, args) => Application.Exit();
@@ -341,8 +347,11 @@ namespace piekluves_darbs
 
                 if (selectedItem.SubItems[3].Text == "0")
                 {
-                    mainPage myMainPage = new mainPage();
-                    BookPopUp ShowPopUp = new BookPopUp(myMainPage);
+                    mainPage mainPageInstance = Application.OpenForms
+                             .OfType<mainPage>()
+                             .FirstOrDefault();  //creates an instance so functions from this form can be called
+
+                    BookPopUp ShowPopUp = new BookPopUp(mainPageInstance);
                     ShowPopUp.Show();
                 }
                 else
@@ -377,8 +386,11 @@ namespace piekluves_darbs
 
         private void return_book_button_Click(object sender, EventArgs e) //
         {
-            mainPage myMainPage = new mainPage(); //creates an instance so functions from this form can be called
-            ReturnForm ShowReturnForm = new ReturnForm(myMainPage);
+            mainPage mainPageInstance = Application.OpenForms
+                    .OfType<mainPage>()
+                    .FirstOrDefault(); //creates an instance so functions from this form can be called
+
+            ReturnForm ShowReturnForm = new ReturnForm(mainPageInstance);
             ShowReturnForm.Show();
 
         }

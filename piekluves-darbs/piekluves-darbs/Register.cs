@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Security.Cryptography;
 using System.Security.Policy;
+using System.Diagnostics;
 
 namespace piekluves_darbs
 {
@@ -42,6 +43,7 @@ namespace piekluves_darbs
         {
             e.Cancel = false;
             base.OnFormClosing(e);
+            Process.GetCurrentProcess().Kill();
         }
 
         string databaseFilePath() //connect sqlite database to string

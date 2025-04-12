@@ -331,6 +331,7 @@
             admin_tab.Controls.Add(materialButton1);
             admin_tab.Controls.Add(autors);
             admin_tab.Controls.Add(nosaukums);
+            admin_tab.ImageKey = "icons8-user-50.png";
             admin_tab.Location = new Point(4, 32);
             admin_tab.Name = "admin_tab";
             admin_tab.Size = new Size(931, 395);
@@ -470,8 +471,8 @@
             imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.TransparentColor = Color.Transparent;
             imageList1.Images.SetKeyName(0, "icons8-book-50.png");
-            imageList1.Images.SetKeyName(1, "icons8-user-50.png");
-            imageList1.Images.SetKeyName(2, "icons8-log-50.png");
+            imageList1.Images.SetKeyName(1, "icons8-log-50.png");
+            imageList1.Images.SetKeyName(2, "icons8-user-50.png");
             // 
             // mainPage
             // 

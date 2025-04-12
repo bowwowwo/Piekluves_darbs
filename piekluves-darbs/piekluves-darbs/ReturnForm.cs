@@ -149,7 +149,7 @@ namespace piekluves_darbs
             //---------------------------------------
             LoadAllLists();
             //---------------------------------------
-            this.Hide();
+            this.Close();
 
         }
     }

@@ -30,6 +30,7 @@ namespace piekluves_darbs
         {
             e.Cancel = false;
             base.OnFormClosing(e);
+            Application.Exit();
         }
 
         string databaseFilePath() //connect sqlite database to string
