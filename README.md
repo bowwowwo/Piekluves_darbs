@@ -1,4 +1,4 @@
-# Piekluves_darbs
+# Piekļuves_darbs
 ## Admin login: miervaldis (username), mango12 (passsword)
 ### Tēma: Grāmatu izsniegšanas sistēma
 ***
