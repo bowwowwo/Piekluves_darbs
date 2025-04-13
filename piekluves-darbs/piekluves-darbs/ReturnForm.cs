@@ -50,24 +50,25 @@ namespace piekluves_darbs
                             bookID = Convert.ToInt32(reader["book_ID"]);
                             I_ID.ID = bookID;
 
-                        }
-                        if (bookID > 0)
-                        {
-                            //get more info from another table
-                            using (SQLiteCommand cmd2 = new SQLiteCommand(query2, con))
+                            if (bookID > 0)
                             {
-                                cmd2.Parameters.AddWithValue("@id", bookID);
-
-                                using (SQLiteDataReader reader2 = cmd2.ExecuteReader())
+                                //get more info from another table
+                                using (SQLiteCommand cmd2 = new SQLiteCommand(query2, con))
                                 {
-                                    while (reader2.Read())
+                                    cmd2.Parameters.AddWithValue("@id", bookID);
+
+                                    using (SQLiteDataReader reader2 = cmd2.ExecuteReader())
                                     {
-                                        string bookTitle = reader2["title"].ToString();
-                                        book_combobox.Items.Add(bookTitle);
+                                        while (reader2.Read())
+                                        {
+                                            string bookTitle = reader2["title"].ToString();
+                                            book_combobox.Items.Add(bookTitle);
+                                        }
                                     }
                                 }
                             }
                         }
+                        
                     }
                 }
             }

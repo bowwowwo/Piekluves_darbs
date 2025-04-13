@@ -376,7 +376,7 @@ namespace piekluves_darbs
                     var check = cmd.ExecuteScalar();
                     if(check.ToString() == "1")
                     {
-                        MessageBox.Show("Grāmata ir rezervēta, pārliecinieties, ka grāmata ir nodota!");
+                        MessageBox.Show("Grāmata ir rezervēta, pārliecinieties, ka lietotājs ir nodevis grāmatu!");
                     }
                     else
                     {
@@ -386,13 +386,14 @@ namespace piekluves_darbs
                             cmd2.Parameters.AddWithValue("@id", BookID.deleteID);
                             cmd2.ExecuteNonQuery();
 
+                            MessageBox.Show("Grāmata tika noņemta no datubāzes!");
+
                         }
                     }
 
                 }
             }
 
-            MessageBox.Show("Grāmata tika noņemta no datubāzes!");
 
             LoadAdminBooks();
             LoadMainBooks();
