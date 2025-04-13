@@ -91,7 +91,7 @@
             pass2_Box.Name = "pass2_Box";
             pass2_Box.Password = true;
             pass2_Box.Size = new Size(182, 50);
-            pass2_Box.TabIndex = 2;
+            pass2_Box.TabIndex = 3;
             pass2_Box.Text = "";
             pass2_Box.TrailingIcon = null;
             // 
@@ -166,7 +166,7 @@
             pass1_Box.Name = "pass1_Box";
             pass1_Box.Password = true;
             pass1_Box.Size = new Size(182, 50);
-            pass1_Box.TabIndex = 6;
+            pass1_Box.TabIndex = 2;
             pass1_Box.Text = "";
             pass1_Box.TrailingIcon = null;
             // 

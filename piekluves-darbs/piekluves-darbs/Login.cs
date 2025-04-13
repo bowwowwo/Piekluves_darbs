@@ -89,6 +89,8 @@ namespace piekluves_darbs
                                             mainPage ShowMain = new mainPage();
                                             ShowMain.Show();
 
+
+                                            pass_button.Text = pass_button.Text.Replace(password, "");
                                             this.Hide();
                                             this.Closed += (s, args) => Application.Exit();
                                 }

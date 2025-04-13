@@ -29,7 +29,7 @@ namespace piekluves_darbs
             _mainPageInstance = mainPageInstance;
 
             string query = "SELECT book_ID FROM Reservations WHERE user_username=@username";
-            string query2 = "SELECT title FROM Books WHERE isReserved=1";
+            string query2 = "SELECT title FROM Books WHERE isReserved=1 AND ID=@id";
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
@@ -39,6 +39,7 @@ namespace piekluves_darbs
                 using (SQLiteCommand cmd = new SQLiteCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@username", Global.global_username);
+
 
                     int bookID = -1;
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -55,6 +56,7 @@ namespace piekluves_darbs
                             //get more info from another table
                             using (SQLiteCommand cmd2 = new SQLiteCommand(query2, con))
                             {
+                                cmd2.Parameters.AddWithValue("@id", bookID);
 
                                 using (SQLiteDataReader reader2 = cmd2.ExecuteReader())
                                 {

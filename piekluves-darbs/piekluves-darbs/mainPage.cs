@@ -364,15 +364,30 @@ namespace piekluves_darbs
         private void removeBook_button_Click(object sender, EventArgs e)
         {
             string query = "DELETE FROM Books WHERE ID=@id";
+            string checkQuery = "SELECT isReserved FROM Books WHERE ID=@id";
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
-                using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                using (SQLiteCommand cmd = new SQLiteCommand(checkQuery, con))
                 {
                     con.Open();
 
-                    cmd.Parameters.AddWithValue("@AtslegasID", BookID.deleteID);
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@id", BookID.deleteID);
+                    var check = cmd.ExecuteScalar();
+                    if(check.ToString() == "1")
+                    {
+                        MessageBox.Show("Grāmata ir rezervēta, pārliecinieties, ka grāmata ir nodota!");
+                    }
+                    else
+                    {
+                        using (SQLiteCommand cmd2 = new SQLiteCommand(query, con))
+                        {
+
+                            cmd2.Parameters.AddWithValue("@id", BookID.deleteID);
+                            cmd2.ExecuteNonQuery();
+
+                        }
+                    }
 
                 }
             }
