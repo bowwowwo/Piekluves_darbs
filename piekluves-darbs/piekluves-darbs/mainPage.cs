@@ -70,7 +70,7 @@ namespace piekluves_darbs
         protected override void OnFormClosing(FormClosingEventArgs e) //make it close
         {
             e.Cancel = false;
-            base.OnFormClosing(e);
+            //base.OnFormClosing(e);
             Process.GetCurrentProcess().Kill();
         }
 

@@ -59,6 +59,7 @@ namespace piekluves_darbs
             Global.global_username = username;
             password = pass_button.Text;
 
+
             try
             {
                 if (String.IsNullOrEmpty(username))
@@ -86,9 +87,20 @@ namespace piekluves_darbs
 
                                 if (count > 0)
                                 {
+                                            if(Global.loginCount > 0)
+                                            {
+                                            mainPage mainPageInstance = Application.OpenForms
+                                                     .OfType<mainPage>()
+                                                     .FirstOrDefault();
+                                            mainPageInstance.Show();
+                                            }
+                                            else 
+                                            {
                                             mainPage ShowMain = new mainPage();
                                             ShowMain.Show();
-
+                                            
+                                            Global.loginCount++;
+                                            }
 
                                             pass_button.Text = pass_button.Text.Replace(password, "");
                                             this.Hide();
@@ -128,4 +140,5 @@ namespace piekluves_darbs
 public static class Global
 { // Modifiable
     public static String global_username = "";
+    public static int loginCount;
 }
