@@ -16,9 +16,9 @@ namespace piekluves_darbs
 {
     public partial class ReturnForm : MaterialForm
     {
-        private mainPage _mainPageInstance;
+        //private mainPage _mainPageInstance;
 
-        public ReturnForm(mainPage mainPageInstance)
+        public ReturnForm()
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -26,7 +26,7 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-            _mainPageInstance = mainPageInstance;
+            //_mainPageInstance = mainPageInstance;
 
             string query = "SELECT book_ID FROM Reservations WHERE user_username=@username";
             string query2 = "SELECT title FROM Books WHERE isReserved=1 AND ID=@id";
@@ -75,6 +75,7 @@ namespace piekluves_darbs
 
         }
 
+
         protected override void OnFormClosing(FormClosingEventArgs e) //make it close
         {
             e.Cancel = false;
@@ -96,63 +97,78 @@ namespace piekluves_darbs
 
         private void LoadAllLists()
         {
-            _mainPageInstance.LoadMainBooks();
+            MainPageManager.CurrentInstance.LoadMainBooks();
             //--------------------------------
-            _mainPageInstance.LoadLog();
+            MainPageManager.CurrentInstance.LoadLog();
             //--------------------------------
-            _mainPageInstance.LoadAdminBooks();
+            MainPageManager.CurrentInstance.LoadAdminBooks();
         }
 
         private void return_book_button_Click(object sender, EventArgs e)
         {
-            DateTime current_time = DateTime.Now;
 
-            string query = "UPDATE Books SET isReserved = 0 WHERE id = @id";
-
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            try
             {
-                con.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                if (book_combobox.SelectedItem == null)
                 {
-                    cmd.Parameters.AddWithValue("@id", I_ID.ID);
-                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Nav izvēlēta grāmata!");
+                }
+                else
+                {
+                    DateTime current_time = DateTime.Now;
+
+                    string query = "UPDATE Books SET isReserved = 0 WHERE id = @id";
+
+                    using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+                    {
+                        con.Open();
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@id", I_ID.ID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    string deleteQuery = "DELETE FROM Reservations WHERE book_ID=@id";
+
+                    using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+                    {
+                        con.Open();
+                        using (SQLiteCommand cmd = new SQLiteCommand(deleteQuery, con))
+                        {
+                            cmd.Parameters.AddWithValue("@id", I_ID.ID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    string query2 = "INSERT INTO Returns (user_username, book_ID, returned_at) VALUES (@user, @book, @at)";
+
+                    using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+                    {
+                        using (SQLiteCommand cmd = new SQLiteCommand(query2, con))
+                        {
+                            con.Open();
+
+                            cmd.Parameters.AddWithValue("@user", Global.global_username);
+                            cmd.Parameters.AddWithValue("@book", I_ID.ID);
+                            cmd.Parameters.AddWithValue("@at", current_time.ToString("dd/MM/yyyy"));
+
+                            cmd.ExecuteNonQuery();
+
+                        }
+                    }
+
+                    MessageBox.Show("Grāmata nodota :)");
+                    //---------------------------------------
+                    LoadAllLists();
+                    //---------------------------------------
+                    this.Close();
                 }
             }
-
-            string deleteQuery = "DELETE FROM Reservations WHERE book_ID=@id";
-
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            catch
             {
-                con.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand(deleteQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@id", I_ID.ID);
-                    cmd.ExecuteNonQuery();
-                }
+                MessageBox.Show("Atgadījusies kļuda!");
             }
-
-            string query2 = "INSERT INTO Returns (user_username, book_ID, returned_at) VALUES (@user, @book, @at)";
-
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
-            {
-                using (SQLiteCommand cmd = new SQLiteCommand(query2, con))
-                {
-                    con.Open();
-
-                    cmd.Parameters.AddWithValue("@user", Global.global_username);
-                    cmd.Parameters.AddWithValue("@book", I_ID.ID);
-                    cmd.Parameters.AddWithValue("@at", current_time.ToString("dd/MM/yyyy"));
-
-                    cmd.ExecuteNonQuery();
-
-                }
-            }
-
-            MessageBox.Show("Grāmata nodota :)");
-            //---------------------------------------
-            LoadAllLists();
-            //---------------------------------------
-            this.Close();
 
         }
     }

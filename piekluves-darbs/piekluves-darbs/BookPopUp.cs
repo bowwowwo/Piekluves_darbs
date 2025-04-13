@@ -20,9 +20,9 @@ namespace piekluves_darbs
     public partial class BookPopUp : MaterialForm
     {
 
-        private mainPage _mainPageInstance;
+        //private mainPage _mainPageInstance;
 
-        public BookPopUp(mainPage mainPageInstance)
+        public BookPopUp()
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -30,7 +30,7 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-            _mainPageInstance = mainPageInstance;
+            //_mainPageInstance = mainPageInstance;
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
@@ -79,11 +79,11 @@ namespace piekluves_darbs
 
         private void LoadAllLists()
         {
-            _mainPageInstance.LoadMainBooks();
+            MainPageManager.CurrentInstance.LoadMainBooks();
             //--------------------------------
-            _mainPageInstance.LoadLog();
+            MainPageManager.CurrentInstance.LoadLog();
             //--------------------------------
-            _mainPageInstance.LoadAdminBooks();
+            MainPageManager.CurrentInstance.LoadAdminBooks();
         }
 
         //-----------------------------------------------------------------------------------------------------
@@ -309,3 +309,4 @@ public class BookService
         }
     }
 }
+

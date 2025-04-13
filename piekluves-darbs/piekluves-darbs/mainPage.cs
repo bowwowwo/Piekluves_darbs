@@ -29,7 +29,6 @@ namespace piekluves_darbs
         private string book = "";
         private string author = "";
 
-
         public mainPage()
         {
             InitializeComponent();
@@ -41,6 +40,7 @@ namespace piekluves_darbs
             removeBook_label.Text = "Izvēlēties grāmatu, kuru izdzēst.";
 
             HideAdminTab();
+            InitializeAdminListView();
 
             using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
             {
@@ -260,7 +260,7 @@ namespace piekluves_darbs
         private void mainPage_Load(object sender, EventArgs e) //ielade listview on load
         {
             //--------------------------------
-            InitializeAdminListView();
+            
             LoadAdminBooks();
             //--------------------------------
             InitializeReservationListView();
@@ -269,6 +269,7 @@ namespace piekluves_darbs
             InitializeLogListView();
             LoadLog();
             //--------------------------------
+            
 
             admin_list.SelectedIndexChanged += admin_list_SelectedIndexChanged;
             reservation_list.SelectedIndexChanged += reservation_list_SelectedIndexChanged;
@@ -347,11 +348,9 @@ namespace piekluves_darbs
 
                 if (selectedItem.SubItems[3].Text == "0")
                 {
-                    mainPage mainPageInstance = Application.OpenForms
-                             .OfType<mainPage>()
-                             .FirstOrDefault();  //creates an instance so functions from this form can be called
+                      //creates an instance so functions from this form can be called
 
-                    BookPopUp ShowPopUp = new BookPopUp(mainPageInstance);
+                    BookPopUp ShowPopUp = new BookPopUp();
                     ShowPopUp.Show();
                 }
                 else
@@ -402,11 +401,8 @@ namespace piekluves_darbs
 
         private void return_book_button_Click(object sender, EventArgs e) //
         {
-            mainPage mainPageInstance = Application.OpenForms
-                    .OfType<mainPage>()
-                    .FirstOrDefault(); //creates an instance so functions from this form can be called
 
-            ReturnForm ShowReturnForm = new ReturnForm(mainPageInstance);
+            ReturnForm ShowReturnForm = new ReturnForm();
             ShowReturnForm.Show();
 
         }

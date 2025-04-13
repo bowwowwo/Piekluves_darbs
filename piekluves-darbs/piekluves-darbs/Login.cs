@@ -6,6 +6,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Text;
 using System.Security.Cryptography;
 using System.Security.Policy;
+using piekluves_darbs;
 
 namespace piekluves_darbs
 {
@@ -23,7 +24,12 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-
+            if (Global.loginCount > 0)
+            {
+                mainPage mainPageInstance = Application.OpenForms.OfType<mainPage>().FirstOrDefault();
+                mainPageInstance.Close();
+                mainPageInstance = null;
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e) //make it close
@@ -87,20 +93,12 @@ namespace piekluves_darbs
 
                                 if (count > 0)
                                 {
-                                            if(Global.loginCount > 0)
-                                            {
-                                            mainPage mainPageInstance = Application.OpenForms
-                                                     .OfType<mainPage>()
-                                                     .FirstOrDefault();
-                                            mainPageInstance.Show();
-                                            }
-                                            else 
-                                            {
+                                                                          
                                             mainPage ShowMain = new mainPage();
+                                            MainPageManager.CurrentInstance = ShowMain;
                                             ShowMain.Show();
                                             
                                             Global.loginCount++;
-                                            }
 
                                             pass_button.Text = pass_button.Text.Replace(password, "");
                                             this.Hide();
@@ -141,4 +139,9 @@ public static class Global
 { // Modifiable
     public static String global_username = "";
     public static int loginCount;
+}
+
+public static class MainPageManager
+{
+    public static mainPage CurrentInstance { get; set; }
 }
