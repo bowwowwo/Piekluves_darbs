@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainPage));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             reservation_tab = new TabPage();
             return_book_button = new MaterialSkin.Controls.MaterialButton();
@@ -37,7 +35,6 @@
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             reservation_list = new MaterialSkin.Controls.MaterialListView();
             log_tab = new TabPage();
-            return_book_button2 = new MaterialSkin.Controls.MaterialButton();
             log_list = new MaterialSkin.Controls.MaterialListView();
             materialCard4 = new MaterialSkin.Controls.MaterialCard();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -88,10 +85,10 @@
             reservation_tab.Controls.Add(materialCard3);
             reservation_tab.Controls.Add(reservation_list);
             reservation_tab.ImageKey = "(none)";
-            reservation_tab.Location = new Point(4, 32);
+            reservation_tab.Location = new Point(4, 24);
             reservation_tab.Name = "reservation_tab";
             reservation_tab.Padding = new Padding(3);
-            reservation_tab.Size = new Size(931, 395);
+            reservation_tab.Size = new Size(931, 403);
             reservation_tab.TabIndex = 0;
             reservation_tab.Text = "Rezervācija";
             reservation_tab.UseVisualStyleBackColor = true;
@@ -162,36 +159,16 @@
             // 
             // log_tab
             // 
-            log_tab.Controls.Add(return_book_button2);
             log_tab.Controls.Add(log_list);
             log_tab.Controls.Add(materialCard4);
             log_tab.ImageKey = "(none)";
-            log_tab.Location = new Point(4, 32);
+            log_tab.Location = new Point(4, 24);
             log_tab.Name = "log_tab";
             log_tab.Padding = new Padding(3);
-            log_tab.Size = new Size(931, 395);
+            log_tab.Size = new Size(931, 403);
             log_tab.TabIndex = 1;
             log_tab.Text = "Žurnāls";
             log_tab.UseVisualStyleBackColor = true;
-            // 
-            // return_book_button2
-            // 
-            return_book_button2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            return_book_button2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            return_book_button2.Depth = 0;
-            return_book_button2.HighEmphasis = true;
-            return_book_button2.Icon = null;
-            return_book_button2.Location = new Point(17, 111);
-            return_book_button2.Margin = new Padding(4, 6, 4, 6);
-            return_book_button2.MouseState = MaterialSkin.MouseState.HOVER;
-            return_book_button2.Name = "return_book_button2";
-            return_book_button2.NoAccentTextColor = Color.Empty;
-            return_book_button2.Size = new Size(212, 36);
-            return_book_button2.TabIndex = 3;
-            return_book_button2.Text = "Vēlaties atdot grāmatu";
-            return_book_button2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            return_book_button2.UseAccentColor = false;
-            return_book_button2.UseVisualStyleBackColor = true;
             // 
             // log_list
             // 
@@ -242,9 +219,9 @@
             user_tab.Controls.Add(materialCard1);
             user_tab.Controls.Add(materialLabel1);
             user_tab.ImageKey = "(none)";
-            user_tab.Location = new Point(4, 32);
+            user_tab.Location = new Point(4, 24);
             user_tab.Name = "user_tab";
-            user_tab.Size = new Size(931, 395);
+            user_tab.Size = new Size(931, 403);
             user_tab.TabIndex = 2;
             user_tab.Text = "Lietotājs";
             user_tab.UseVisualStyleBackColor = true;
@@ -330,9 +307,9 @@
             admin_tab.Controls.Add(autors);
             admin_tab.Controls.Add(nosaukums);
             admin_tab.ImageKey = "(none)";
-            admin_tab.Location = new Point(4, 32);
+            admin_tab.Location = new Point(4, 24);
             admin_tab.Name = "admin_tab";
-            admin_tab.Size = new Size(931, 395);
+            admin_tab.Size = new Size(931, 403);
             admin_tab.TabIndex = 3;
             admin_tab.Text = "Admin access";
             admin_tab.UseVisualStyleBackColor = true;
@@ -478,7 +455,6 @@
             materialCard3.ResumeLayout(false);
             materialCard3.PerformLayout();
             log_tab.ResumeLayout(false);
-            log_tab.PerformLayout();
             materialCard4.ResumeLayout(false);
             materialCard4.PerformLayout();
             user_tab.ResumeLayout(false);
@@ -518,6 +494,5 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialListView log_list;
         private MaterialSkin.Controls.MaterialButton return_book_button;
-        private MaterialSkin.Controls.MaterialButton return_book_button2;
     }
 }
