@@ -16,7 +16,6 @@ namespace piekluves_darbs
 {
     public partial class ReturnForm : MaterialForm
     {
-        //private mainPage _mainPageInstance;
 
         public ReturnForm()
         {
@@ -26,12 +25,11 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-            //_mainPageInstance = mainPageInstance;
 
             string query = "SELECT book_ID FROM Reservations WHERE user_username=@username";
             string query2 = "SELECT title FROM Books WHERE isReserved=1 AND ID=@id";
 
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath())) //sekojosais kods iegust lietotaja rezervetas gramatas
             {
                 con.Open();
 
@@ -44,7 +42,7 @@ namespace piekluves_darbs
                     int bookID = -1;
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        while (reader.Read()) //izmantots while gadijuma ja lietotajs ir aiznemies vairakas gramatas
                         {
                             // Read the bookID from the first table
                             bookID = Convert.ToInt32(reader["book_ID"]);
@@ -95,7 +93,7 @@ namespace piekluves_darbs
 
         //--------------------------------------------------------------------------------------------------
 
-        private void LoadAllLists()
+        private void LoadAllLists() //atsvaidzina main page sarakstus
         {
             MainPageManager.CurrentInstance.LoadMainBooks();
             //--------------------------------
@@ -104,7 +102,7 @@ namespace piekluves_darbs
             MainPageManager.CurrentInstance.LoadAdminBooks();
         }
 
-        private void return_book_button_Click(object sender, EventArgs e)
+        private void return_book_button_Click(object sender, EventArgs e) //nodot gramatu poga
         {
 
             try
@@ -113,11 +111,11 @@ namespace piekluves_darbs
                 {
                     MessageBox.Show("Nav izvēlēta grāmata!");
                 }
-                else
+                else //ievieto info datubaze par nodosanu
                 {
                     DateTime current_time = DateTime.Now;
 
-                    string query = "UPDATE Books SET isReserved = 0 WHERE id = @id";
+                    string query = "UPDATE Books SET isReserved = 0 WHERE id = @id"; //atsvaidzina gramatas statusu
 
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
@@ -129,7 +127,7 @@ namespace piekluves_darbs
                         }
                     }
 
-                    string deleteQuery = "DELETE FROM Reservations WHERE book_ID=@id";
+                    string deleteQuery = "DELETE FROM Reservations WHERE book_ID=@id"; //izdzes no rezervaciju tabulas datubaze
 
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
@@ -141,7 +139,7 @@ namespace piekluves_darbs
                         }
                     }
 
-                    string query2 = "INSERT INTO Returns (user_username, book_ID, returned_at) VALUES (@user, @book, @at)";
+                    string query2 = "INSERT INTO Returns (user_username, book_ID, returned_at) VALUES (@user, @book, @at)"; //ievieto zurnala tabula datubaze info
 
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
@@ -174,7 +172,7 @@ namespace piekluves_darbs
     }
 }
 
-public static class I_ID
+public static class I_ID //mainigais globalai lietosanai
 { // Modifiable
     public static int ID;
 }

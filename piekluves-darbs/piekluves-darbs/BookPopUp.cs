@@ -20,8 +20,6 @@ namespace piekluves_darbs
     public partial class BookPopUp : MaterialForm
     {
 
-        //private mainPage _mainPageInstance;
-
         public BookPopUp()
         {
             InitializeComponent();
@@ -30,9 +28,8 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-            //_mainPageInstance = mainPageInstance;
 
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath())) //panem gramatas info ar gramatas id no datubazes
             {
                 string query = "SELECT title, author, description FROM Books WHERE id=@id";
 
@@ -55,7 +52,7 @@ namespace piekluves_darbs
                 }
             }
 
-            LoadBookDataAsync();
+            LoadBookDataAsync(); //API
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e) //make it close
@@ -77,7 +74,7 @@ namespace piekluves_darbs
 
         //----------------------------------------------------------------------------------------------------
 
-        private void LoadAllLists()
+        private void LoadAllLists() //izmanto main page metodes, lai atsvaidzinatu sarakstus main page
         {
             MainPageManager.CurrentInstance.LoadMainBooks();
             //--------------------------------
@@ -88,9 +85,9 @@ namespace piekluves_darbs
 
         //-----------------------------------------------------------------------------------------------------
 
-        private async void LoadBookDataAsync()
+        private async void LoadBookDataAsync() //API metode
         {
-            string title = "";
+            string title = ""; //mainigie gramatas info
             string author = "";
             string description = "";
 
@@ -118,13 +115,13 @@ namespace piekluves_darbs
             BookTitle.Text = title;
             BookAuthor.Text = author;
 
-            if (!string.IsNullOrWhiteSpace(description))
+            if (!string.IsNullOrWhiteSpace(description)) 
             {
                 description_box.Text = description;
             }
             else
             {
-                // Fetch from API
+                // iegust no API informaciju un ieraksta gramatas aprakstu
                 BookService bookService = new BookService();
                 string fetchedDescription = await bookService.GetBookDescriptionAsync(title);
 
@@ -153,12 +150,12 @@ namespace piekluves_darbs
             }
         }
 
-        private void chooseBook_button_Click(object sender, EventArgs e)
+        private void chooseBook_button_Click(object sender, EventArgs e) 
         {
             DateTime current_time = DateTime.Now;
             DateTime due_date = DateTime.Now;
 
-            switch (due_date_box.SelectedIndex)
+            switch (due_date_box.SelectedIndex) //izveletais nedelu daudzums
             {
                 case 0:
                     due_date = current_time.AddDays(7); 
@@ -171,7 +168,7 @@ namespace piekluves_darbs
                     break;
             }
 
-            try
+            try //ievada rezervacijas info datubaze
             {
                 if(agreement_check.Checked == true)
                 {
@@ -192,7 +189,7 @@ namespace piekluves_darbs
                         }
                     }
 
-                    string query2 = "UPDATE Books SET isreserved=1 WHERE ID=@id";
+                    string query2 = "UPDATE Books SET isreserved=1 WHERE ID=@id"; //norada ka gramata ir rezerveta
 
                     using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                     {
@@ -245,24 +242,24 @@ namespace piekluves_darbs
 //##############################################################################################################################
 //code for API
 
-public class BookService
+public class BookService //api klase
 {
-    private static readonly HttpClient httpClient = new HttpClient();
+    private static readonly HttpClient httpClient = new HttpClient(); //izveido http klientu
 
-    public async Task<string> GetBookDescriptionAsync(string title)
+    public async Task<string> GetBookDescriptionAsync(string title) //parbauda vai ir nosaukums
     {
         if (string.IsNullOrWhiteSpace(title))
             throw new ArgumentException("Title must not be empty.", nameof(title));
 
-        try
+        try // izmanto internet archive api gramatas apraksta iegusanai
         {
             string query = Uri.EscapeDataString(title);
             string requestUri = $"https://openlibrary.org/search.json?title={query}";
 
-            HttpResponseMessage response = await httpClient.GetAsync(requestUri);
+            HttpResponseMessage response = await httpClient.GetAsync(requestUri); //gaida atbildi
             response.EnsureSuccessStatusCode();
 
-            string jsonResponse = await response.Content.ReadAsStringAsync();
+            string jsonResponse = await response.Content.ReadAsStringAsync(); //nolasa atbildes saturu
             JObject data = JObject.Parse(jsonResponse);
 
             var firstDoc = data["docs"]?.FirstOrDefault();
@@ -273,14 +270,14 @@ public class BookService
             if (string.IsNullOrEmpty(key))
                 return "Nav pieejama informācija šai grāmatai.";
 
-            string bookDetailsUri = $"https://openlibrary.org{key}.json";
+            string bookDetailsUri = $"https://openlibrary.org{key}.json"; // ja ir pieejams info ieliek bookDetailsResponse mainigaja aprakstu
             HttpResponseMessage bookDetailsResponse = await httpClient.GetAsync(bookDetailsUri);
             bookDetailsResponse.EnsureSuccessStatusCode();
 
             string bookDetailsJson = await bookDetailsResponse.Content.ReadAsStringAsync();
             JObject bookDetails = JObject.Parse(bookDetailsJson);
 
-            var descriptionToken = bookDetails["description"];
+            var descriptionToken = bookDetails["description"]; //sasaista description api dotaja json faila
 
             string descriptionText = "";
 
@@ -297,15 +294,15 @@ public class BookService
                 descriptionText = descriptionToken.ToString();
             }
 
-            return $"Apraksts: {descriptionText}";
+            return $"Apraksts: {descriptionText}"; // atgriez aprakstu
         }
         catch (HttpRequestException httpEx)
         {
-            return $"Apraksts nav pieejams. (Tīkla kļūda: {httpEx.Message})";
+            return $"Apraksts nav pieejams. (Tīkla kļūda)";
         }
         catch (Exception ex)
         {
-            return $"Apraksts nav pieejams. (Kļūda: {ex.Message})";
+            return $"Apraksts nav pieejams. (Kļūda)";
         }
     }
 }

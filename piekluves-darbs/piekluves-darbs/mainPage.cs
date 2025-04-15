@@ -21,12 +21,10 @@ namespace piekluves_darbs
 {
     public partial class mainPage : MaterialForm
     {
-
-        //string username = Global.global_username;
-        private TabPage _savedTabPage;
+        private TabPage _savedTabPage; //tiek glabata cilne
 
 
-        private string book = "";
+        private string book = ""; // mainigie gramatas datu ievadisanai
         private string author = "";
 
         public mainPage()
@@ -37,12 +35,12 @@ namespace piekluves_darbs
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Amber800, Primary.Amber900, Primary.Amber500, Accent.LightBlue200, TextShade.WHITE);
 
-            removeBook_label.Text = "Izvēlēties grāmatu, kuru izdzēst.";
+            removeBook_label.Text = "Izvēlēties grāmatu, kuru izdzēst."; //uzraksts tiek mainits kaut cik dinamiski
 
-            HideAdminTab();
-            InitializeAdminListView();
+            HideAdminTab(); // metode kas slepj admin cilni parastam lietotajam
+            InitializeAdminListView(); // inicialize admin sarakstu
 
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath())) // parbauda vai lietotajs ir admins
             {
                 string adminQuery = "SELECT admin FROM Users WHERE username=@username";
                 con.Open();
@@ -51,8 +49,8 @@ namespace piekluves_darbs
                     cmd.Parameters.AddWithValue("@username", Global.global_username);
                     var result = cmd.ExecuteScalar();
                     bool isAdmin = Convert.ToBoolean(result);
-                    //MessageBox.Show(result.ToString());
-                    if (isAdmin == true)
+
+                    if (isAdmin == true) //beigt sesiju lapa parada vai ir admins
                     {
                         ShowAdminTab();
                         adminstatus_label.Text = "Esat admins";
@@ -86,13 +84,13 @@ namespace piekluves_darbs
         }
 
 
-        private void HideAdminTab() //removes tab
+        private void HideAdminTab() //nonem cilni ja lietotajs nav admins
         {
             _savedTabPage = admin_tab; // keep reference
             materialTabControl1.TabPages.Remove(admin_tab);
         }
 
-        private void ShowAdminTab() //show admin tab
+        private void ShowAdminTab() //parada admin cilni
         {
             if (_savedTabPage != null && !materialTabControl1.TabPages.Contains(_savedTabPage))
             {
@@ -102,21 +100,21 @@ namespace piekluves_darbs
 
         private void InitializeAdminListView()
         {
-            // Set the view to show details.
+            //vispārīgie iestatījumi
             admin_list.View = View.Details;
             admin_list.FullRowSelect = true;
             admin_list.GridLines = false;
             admin_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             admin_list.Scrollable = true;
 
-            // Define columns (adjust width as necessary)
+            // rindu inicializacija
             admin_list.Columns.Add("ID", 50, HorizontalAlignment.Left);
             admin_list.Columns.Add("Title", 250, HorizontalAlignment.Left);
             admin_list.Columns.Add("Reserved", 100, HorizontalAlignment.Left);
         }
 
         public void LoadAdminBooks()
-        {
+        { //inicialize admin list view ar datiem no datubazes
             admin_list.Items.Clear();
 
             string query = "SELECT ID, title, isReserved FROM Books";
@@ -142,7 +140,7 @@ namespace piekluves_darbs
         }
 
 
-        private bool AddBook(string book, string author)
+        private bool AddBook(string book, string author) // gramatas pievienosanas metode
         {
             string query = "INSERT INTO Books (title, author) VALUES (@book, @author)";
 
@@ -169,7 +167,7 @@ namespace piekluves_darbs
             }
         }
 
-        public void InitializeReservationListView()
+        public void InitializeReservationListView() //inicialize rezervacijas cilnes sarakstu
         {
             reservation_list.View = View.Details;
             reservation_list.FullRowSelect = true;
@@ -183,7 +181,7 @@ namespace piekluves_darbs
             reservation_list.Columns.Add("Rezervēts", 100, HorizontalAlignment.Left);
         }
 
-        public void LoadMainBooks()
+        public void LoadMainBooks()//papildina galvenas cilnes sarakstu ar datiem no datubazes
         {
             reservation_list.Items.Clear();
 
@@ -211,7 +209,7 @@ namespace piekluves_darbs
             }
         }
 
-        public void InitializeLogListView()
+        public void InitializeLogListView() //zurnala saraksta inicializacija
         {
             log_list.View = View.Details;
             log_list.FullRowSelect = true;
@@ -226,7 +224,7 @@ namespace piekluves_darbs
             log_list.Columns.Add("Atdota", 110, HorizontalAlignment.Left);
         }
 
-        public void LoadLog()
+        public void LoadLog() //papildina sarakstu ar datiem no datubazes
         {
             log_list.Items.Clear();
 
@@ -271,11 +269,11 @@ namespace piekluves_darbs
             //--------------------------------
             
 
-            admin_list.SelectedIndexChanged += admin_list_SelectedIndexChanged;
+            admin_list.SelectedIndexChanged += admin_list_SelectedIndexChanged; // parbauda vai uz atbilstoso sarakstu gramatam tiek uzspiests
             reservation_list.SelectedIndexChanged += reservation_list_SelectedIndexChanged;
         }
 
-        private void materialButton1_Click(object sender, EventArgs e) //pievienot grāmatu admin lapa
+        private void materialButton1_Click(object sender, EventArgs e) //pievienot grāmatu admin lapas poga
         {
             book = nosaukums.Text;
             author = autors.Text;
@@ -348,7 +346,6 @@ namespace piekluves_darbs
 
                 if (selectedItem.SubItems[3].Text == "0")
                 {
-                      //creates an instance so functions from this form can be called
 
                     BookPopUp ShowPopUp = new BookPopUp();
                     ShowPopUp.Show();
@@ -360,37 +357,43 @@ namespace piekluves_darbs
             }
         }
 
-        private void removeBook_button_Click(object sender, EventArgs e)
+        private void removeBook_button_Click(object sender, EventArgs e) // gramatas nonemsanas poga administracijas lapa
         {
             string query = "DELETE FROM Books WHERE ID=@id";
             string checkQuery = "SELECT isReserved FROM Books WHERE ID=@id";
 
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
+            try
             {
-                using (SQLiteCommand cmd = new SQLiteCommand(checkQuery, con))
+                using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
                 {
-                    con.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(checkQuery, con))
+                    {
+                        con.Open();
 
-                    cmd.Parameters.AddWithValue("@id", BookID.deleteID);
-                    var check = cmd.ExecuteScalar();
-                    if(check.ToString() == "1")
-                    {
-                        MessageBox.Show("Grāmata ir rezervēta, pārliecinieties, ka lietotājs ir nodevis grāmatu!");
-                    }
-                    else
-                    {
-                        using (SQLiteCommand cmd2 = new SQLiteCommand(query, con))
+                        cmd.Parameters.AddWithValue("@id", BookID.deleteID);
+                        var check = cmd.ExecuteScalar();
+                        if (check.ToString() == "1")
                         {
-
-                            cmd2.Parameters.AddWithValue("@id", BookID.deleteID);
-                            cmd2.ExecuteNonQuery();
-
-                            MessageBox.Show("Grāmata tika noņemta no datubāzes!");
-
+                            MessageBox.Show("Grāmata ir rezervēta, pārliecinieties, ka lietotājs ir nodevis grāmatu!");
                         }
-                    }
+                        else
+                        {
+                            using (SQLiteCommand cmd2 = new SQLiteCommand(query, con))
+                            {
 
+                                cmd2.Parameters.AddWithValue("@id", BookID.deleteID);
+                                cmd2.ExecuteNonQuery();
+
+                                MessageBox.Show("Grāmata tika noņemta no datubāzes!");
+
+                            }
+                        }
+
+                    }
                 }
+            }catch
+            {
+                MessageBox.Show("Nav izvēlēta grāmata!");
             }
 
 
@@ -399,7 +402,7 @@ namespace piekluves_darbs
 
         }
 
-        private void return_book_button_Click(object sender, EventArgs e) //
+        private void return_book_button_Click(object sender, EventArgs e) //aizsuta uz atgriezsanas lapu
         {
 
             ReturnForm ShowReturnForm = new ReturnForm();
@@ -409,7 +412,7 @@ namespace piekluves_darbs
     }
 }
 
-public static class BookID
+public static class BookID //define mainigos globalai lietosanai
 { // Modifiable
     public static int ID;
     public static int deleteID;

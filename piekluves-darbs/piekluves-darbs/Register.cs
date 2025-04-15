@@ -21,7 +21,7 @@ namespace piekluves_darbs
     public partial class Register : MaterialForm
     {
 
-        private string username = "";
+        private string username = ""; // mainigie lietotaja ievades datu glabasanai
         private string email = "";
         private string password1 = "";
         private string password2 = "";
@@ -68,12 +68,12 @@ namespace piekluves_darbs
 
         private void register_button_Click(object sender, EventArgs e) //"izveidot jaunu lietotāju"
         {
-            username = name_Box.Text;
+            username = name_Box.Text; //ievades dati
             email = email_box.Text;
             password1 = pass1_Box.Text;
             password2 = pass2_Box.Text;
 
-            try // pārbauda iespējamās kļūdas
+            try // pārbauda iespējamās lietotāja kļūdas
             {
                 if (String.IsNullOrEmpty(username))
                 {
@@ -107,18 +107,18 @@ namespace piekluves_darbs
                         string query = "INSERT INTO Users (username, email, password_hash) VALUES (@username, @email, @password)";
                         string userExistsQuery = "SELECT COUNT(*) FROM Users WHERE username = @username";
 
-                        using (SQLiteCommand cmd = new SQLiteCommand(userExistsQuery, con))
+                        using (SQLiteCommand cmd = new SQLiteCommand(userExistsQuery, con)) // parbauda vai datubaze ir jau lietotajvards
                         {
                             cmd.Parameters.AddWithValue("@username", username);
                             int emailCount = Convert.ToInt32(cmd.ExecuteScalar());
                             user = emailCount != 0;
                         }
-
                         if (user)
                         {
                             MessageBox.Show("Lietotājvārds jau tiek izmantots!");
                         }
-                        else
+
+                        else // citadak lauj lietotajam registreties
                         {
                             string password3 = HashPass(password1);
                             using (SQLiteCommand cmd2 = new SQLiteCommand(query, con))
@@ -154,29 +154,13 @@ namespace piekluves_darbs
             }
 
         }
-        public static string HashPass(string password)
+        public static string HashPass(string password) //parveido paroli uz sha256 sifru drosai glabasanai
         {
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(password);
                 byte[] hashBytes = sha256.ComputeHash(bytes);
                 return Convert.ToBase64String(hashBytes);
-            }
-        }
-        public bool userExists(string username) //checks if user exists
-        {
-            using (SQLiteConnection con = new SQLiteConnection(databaseFilePath()))
-            {
-                con.Open();
-                string userExistsQuery = "SELECT COUNT(*) FROM Users WHERE username = @username";
-                using (SQLiteCommand cmd = new SQLiteCommand(userExistsQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    int emailCount = Convert.ToInt32(cmd.ExecuteScalar());
-                    bool user = emailCount != 0;
-
-                    return user;
-                }
             }
         }
     }
